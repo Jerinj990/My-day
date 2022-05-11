@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_call_history.xml" value="0.2" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_complaints.xml" value="0.2" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_ipsettings.xml" value="0.1" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_location_history.xml" value="0.2" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_signup.xml" value="0.1" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_sms_history.xml" value="0.2" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_sms_opn.xml" value="0.2" />
+        <entry key="..\:/2021 Projects/Main Projects 2021/Cochin KMM/MY Day/MyDay2/app/src/main/res/layout/activity_userhome.xml" value="0.2" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
