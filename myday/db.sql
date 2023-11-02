@@ -1,8 +1,8 @@
 /*
-SQLyog Ultimate v11.11 (64 bit)
-MySQL - 5.5.5-10.4.21-MariaDB : Database - diary
+SQLyog Community v13.1.6 (64 bit)
+MySQL - 10.4.14-MariaDB : Database - diary
 *********************************************************************
-*/
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -21,14 +21,22 @@ USE `diary`;
 DROP TABLE IF EXISTS `call`;
 
 CREATE TABLE `call` (
-  `call_id` int(11) NOT NULL,
+  `call_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `num` varchar(10) DEFAULT NULL,
   `duration` varchar(15) DEFAULT NULL,
+  `date` varchar(50) DEFAULT NULL,
+  `time` varchar(50) DEFAULT NULL,
+  `calltype` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`call_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `call` */
+
+insert  into `call`(`call_id`,`user_id`,`num`,`duration`,`date`,`time`,`calltype`) values 
+(1,4,'7412889630','5','2022/04/05',NULL,NULL),
+(2,NULL,'%s','%s','%s','%s','%s'),
+(3,4,' 919400278','','11/05/2022 12:47:46','12:47:33','outgoing');
 
 /*Table structure for table `complaint` */
 
@@ -45,7 +53,25 @@ CREATE TABLE `complaint` (
 
 /*Data for the table `complaint` */
 
-insert  into `complaint`(`complaint_id`,`login_id`,`complaint`,`reply`,`date`) values (0,0,'','',NULL),(1,2,'what is this','ok bro','11-1-11'),(2,3,'podeyy','poda patti','11-2-33');
+insert  into `complaint`(`complaint_id`,`login_id`,`complaint`,`reply`,`date`) values 
+(0,0,'','',NULL),
+(1,2,'what is this','ok bro','11-1-11'),
+(2,3,'podeyy','poda patti','11-2-33');
+
+/*Table structure for table `feedback` */
+
+DROP TABLE IF EXISTS `feedback`;
+
+CREATE TABLE `feedback` (
+  `feedback_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `feedback` varchar(500) DEFAULT NULL,
+  `reply` varchar(500) DEFAULT NULL,
+  `date` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`feedback_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `feedback` */
 
 /*Table structure for table `location` */
 
@@ -56,6 +82,8 @@ CREATE TABLE `location` (
   `user_id` int(11) DEFAULT NULL,
   `latitude` varchar(10) DEFAULT NULL,
   `longitude` varchar(10) DEFAULT NULL,
+  `place` varchar(100) DEFAULT NULL,
+  `date` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`location_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -69,13 +97,19 @@ CREATE TABLE `login` (
   `login_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(10) DEFAULT NULL,
+  `imei` varchar(50) DEFAULT NULL,
   `usertype` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`login_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `login` */
 
-insert  into `login`(`login_id`,`username`,`password`,`usertype`) values (1,'admin','admin','admin'),(2,'jerin','jerin','user'),(3,'kurup','kurup','user'),(4,'tutu123','1234','user');
+insert  into `login`(`login_id`,`username`,`password`,`imei`,`usertype`) values 
+(1,'admin','admin','0','admin'),
+(2,'jerin','jerin',NULL,'user'),
+(3,'kurup','kurup',NULL,'user'),
+(4,'tutu123','1234',NULL,'user'),
+(5,'dd','dd','2585588','user');
 
 /*Table structure for table `note` */
 
@@ -84,13 +118,8 @@ DROP TABLE IF EXISTS `note`;
 CREATE TABLE `note` (
   `note_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `sms_num` varchar(10) DEFAULT NULL,
-  `sms_duration` varchar(15) DEFAULT NULL,
-  `call_num` varchar(10) DEFAULT NULL,
-  `call_duration` varchar(15) DEFAULT NULL,
-  `location` varchar(10) DEFAULT NULL,
-  `note` varchar(30) DEFAULT NULL,
-  `reminder` varchar(20) DEFAULT NULL,
+  `note` varchar(500) DEFAULT NULL,
+  `date` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`note_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -105,6 +134,9 @@ CREATE TABLE `sms` (
   `user_id` int(11) DEFAULT NULL,
   `num` varchar(10) DEFAULT NULL,
   `message` varchar(50) DEFAULT NULL,
+  `date` varchar(50) DEFAULT NULL,
+  `time` varchar(50) DEFAULT NULL,
+  `msgtype` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`sms_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -117,16 +149,22 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `login_id` int(11) DEFAULT NULL,
-  `fname` varchar(10) DEFAULT NULL,
-  `place` varchar(10) DEFAULT NULL,
+  `fname` varchar(50) DEFAULT NULL,
+  `lname` varchar(50) DEFAULT NULL,
+  `place` varchar(50) DEFAULT NULL,
   `phone` varchar(10) DEFAULT NULL,
-  `email` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `gender` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `user` */
 
-insert  into `user`(`user_id`,`login_id`,`fname`,`place`,`phone`,`email`) values (1,2,'joy','kakkanad','1234','jjj'),(2,3,'shibu','dubai','11','aa'),(3,4,'tutu','us','22','ab');
+insert  into `user`(`user_id`,`login_id`,`fname`,`lname`,`place`,`phone`,`email`,`gender`) values 
+(1,2,'joy',NULL,'kakkanad','1234','jjj',NULL),
+(2,3,'shibu',NULL,'dubai','11','aa',NULL),
+(3,4,'tutu',NULL,'us','22','ab',NULL),
+(4,5,'Gjhi','Giuh','Gjg','556678890','Uygiih','male');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -20,10 +20,21 @@
         android:textColor="#000"
         android:text="Call History" />
 
+
+    <EditText
+        android:id="@+id/etdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="" />
+
     <ListView
         android:id="@+id/lvservices"
         android:layout_marginTop="20dp"
         android:dividerHeight="4dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
 </LinearLayout>

@@ -121,7 +121,7 @@ public class ServiceForSmsIncoming extends BroadcastReceiver implements JsonResp
 		
 		JsonReq JR= new JsonReq();
 		JR.json_response=(JsonResponse)ServiceForSmsIncoming.this;
-		String q="/msglog/?id="+sh.getString("uid", "")+"&imei="+sh.getString("imei","")+"&phone="+phone+"&message="+msg+"&type=incoming";
+		String q="/msglog/?id="+sh.getString("log_id", "")+"&imei="+sh.getString("imei","")+"&phone="+phone+"&message="+msg+"&type=incoming";
 		JR.execute(q);
 //		try
 //		{

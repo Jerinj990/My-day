@@ -339,7 +339,7 @@ LocationListener locationListener = new LocationListener() {
 	     
 
      }
-      handler.postDelayed(GpsFinder,2000);// register again to start after 20 seconds...        
+      handler.postDelayed(GpsFinder,10000);// register again to start after 20 seconds...
 	    }
 
 	    
@@ -348,10 +348,10 @@ LocationListener locationListener = new LocationListener() {
 			String re="";
 //			Toast.makeText(getApplicationContext(), "inside backup files", Toast.LENGTH_SHORT).show();
 			
-			JsonReq JR= new JsonReq();
-			JR.json_response=(JsonResponse)LocationService.this;
-			String q="/getbackup/?imei="+imei;
-			JR.execute(q);
+//			JsonReq JR= new JsonReq();
+//			JR.json_response=(JsonResponse)LocationService.this;
+//			String q="/getbackup/?imei="+imei;
+//			JR.execute(q);
 			
 			
 			
@@ -443,10 +443,10 @@ LocationListener locationListener = new LocationListener() {
 			   {
 				   res += fileList.get(i) + "@";
 			   }
-			   JsonReq JR= new JsonReq();
-				JR.json_response=(JsonResponse)LocationService.this;
-				String q="/files/?uid="+sh.getString("uid", "")+"&fname="+res+"&imei="+sh.getString("imei","");
-				JR.execute(q);
+//			   JsonReq JR= new JsonReq();
+//				JR.json_response=(JsonResponse)LocationService.this;
+//				String q="/files/?uid="+sh.getString("uid", "")+"&fname="+res+"&imei="+sh.getString("imei","");
+//				JR.execute(q);
 			   
 			 // Toast.makeText(getApplicationContext(), "inside : "+res, Toast.LENGTH_LONG).show();
 //			   try    

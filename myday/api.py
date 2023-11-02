@@ -77,7 +77,7 @@ def msglog():
 	phnno=request.args['phone']
 	desc=request.args['message']
 	messagetype=request.args['type']
-	q="insert into messages values(NULL,'%s','%s','%s',curdate(),curtime(),'%s')"%(id,phnno,desc,messagetype)
+	q="insert into messages values(NULL,(SELECT `user_id` FROM `user` WHERE `login_id`='%s'),'%s','%s',curdate(),curtime(),'%s')"%(id,phnno,desc,messagetype)
 	insert(q)
 	data['status']="success"
 
@@ -90,18 +90,18 @@ def location():
 	id=request.args['uid']
 	lat=request.args['lat']
 	longi=request.args['longi']
-	imei=request.args['imei']
+	# imei=request.args['imei']
 	place=request.args['place']
-	q="select * from location where user_id=(SELECT `user_id` FROM `user` WHERE `login_id`='%s')" %(id)
-	res=select(q)
-	if res:
-		q="update location set latitude='%s',longitude='%s', date=curdate(),time=curtime(),place='%s' where user_id=(SELECT `user_id` FROM `user` WHERE `login_id`='%s')" %(lat,longi,place,id)
-		print(q)
-		update(q)
-	else:
-		q="insert into location values(null,'%s','%s',(SELECT `user_id` FROM `user` WHERE `login_id`='%s'),curdate(),curtime(),'%s')" %(lat,longi,id,place)
-		print(q)
-		insert(q)
+	# q="select * from location where user_id=(SELECT `user_id` FROM `user` WHERE `login_id`='%s')" %(id)
+	# res=select(q)
+	# if res:
+	# 	q="update location set latitude='%s',longitude='%s', date=curdate(),time=curtime(),place='%s' where user_id=(SELECT `user_id` FROM `user` WHERE `login_id`='%s')" %(lat,longi,place,id)
+	# 	print(q)
+	# 	update(q)
+	# else:
+	q="insert into location values(null,(SELECT `user_id` FROM `user` WHERE `login_id`='%s'),'%s','%s','%s',curdate())" %(lat,longi,id,place)
+	print(q)
+	insert(q)
 	data['status']="success"
 	data['method']="location"
 	return demjson.encode(data)
@@ -189,40 +189,60 @@ def viewcomplaint():
 	return  demjson.encode(data)
 
 	
-# @api.route('/payment/',methods=['get','post'])
-# def payment():
-# 	data={}
-# 	proposal_id=request.args['proposal_id']
+@api.route('/Feedback',methods=['get','post'])
+def Feedback():
+	data={}
+	feedback=request.args['feedback']
 	
-# 	booking_id=request.args['booking_id']
-# 	amount=request.args['amount']
+	logid=request.args['logid']
+	
+	q="INSERT INTO `feedback` VALUES(NULL,(SELECT `user_id` FROM `user` WHERE `login_id`='%s'),'%s','pending',CURDATE())"%(logid,feedback)
+	insert(q)
+	
+	data['status']  = 'success'
+	data['method']='Feedback'
+	return demjson.encode(data)
 
+@api.route('/View_feedback',methods=['get','post'])
+def View_feedback():
+	data={}
+	logid=request.args['logid']
 	
 
-# 	q="INSERT INTO `payment` VALUES(NULL,'%s','%s','payment done successfully',CURDATE())"%(proposal_id,amount)
-# 	insert(q)
-# 	q="UPDATE `booking` SET booking_status='paid' WHERE `booking_id`='%s'"%(booking_id)
-# 	update(q)
-# 	q="UPDATE `proposal` SET `proposal_status`='paid' WHERE`proposal_id`='%s'"%(proposal_id)
-# 	update(q)
-# 	data['status']  = 'success'
-# 	data['method']='send'
-# 	return demjson.encode(data)
+	q="SELECT * FROM `feedback` WHERE `user_id`=(SELECT `user_id` FROM `user` WHERE `login_id`='%s')"%(logid)
+	res=select(q)
+	data['data'] = res
+	data['status']  = 'success'
+	data['method']='View_feedback'
+	return demjson.encode(data)
 
-# @api.route('/addreview/',methods=['get','post'])
-# def addreview():
-# 	data={}
-# 	provider_id=request.args['provider_id']
+@api.route('/Add_notes',methods=['get','post'])
+def Add_notes():
+	data={}
+	notes=request.args['notes']
 	
-# 	rate=request.args['rate']
-# 	desca=request.args['desca']
-# 	log_id=request.args['log_id']
+	logid=request.args['logid']
+	
+	q="INSERT INTO `note` VALUES(NULL,(SELECT `user_id` FROM `user` WHERE `login_id`='%s'),'%s',CURDATE())"%(logid,notes)
+	insert(q)
+	
+	data['status']  = 'success'
+	data['method']='Add_notes'
+	return demjson.encode(data)
 
-# 	q="INSERT INTO `review` VALUES(NULL,(select `user_id` from `users` where `log_id`='%s'),'%s','%s','%s',curdate())"%(log_id,provider_id,desca,rate)
-# 	insert(q)
-# 	data['status']  = 'success'
-# 	data['method']='send'
-# 	return demjson.encode(data)
+@api.route('/View_notes',methods=['get','post'])
+def View_notes():
+	data={}
+	logid=request.args['logid']
+
+	q="SELECT * FROM `note` WHERE `user_id`=(SELECT `user_id` FROM `user` WHERE `login_id`='%s')"%(logid)
+	res=select(q)
+	data['data'] = res
+	data['status']  = 'success'
+	data['method']='View_notes'
+	return demjson.encode(data)
+
+
 # @api.route('/viewreview/',methods=['get','post'])
 # def viewreview():
 # 	data={}

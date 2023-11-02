@@ -2,7 +2,7 @@ import mysql.connector
 
 password=""	
 database = "diary"
-port=3308
+port=3306
 def select(q):
 	cnx = mysql.connector.connect(user="root", password=password, host="localhost", database=database,port=port)
 	cur = cnx.cursor(dictionary=True)

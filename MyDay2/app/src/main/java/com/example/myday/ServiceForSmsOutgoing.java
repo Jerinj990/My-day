@@ -134,7 +134,7 @@ public class ServiceForSmsOutgoing extends Service implements JsonResponse{
 		// TODO Auto-generated method stub
 		JsonReq JR= new JsonReq();
 		JR.json_response=(JsonResponse)ServiceForSmsOutgoing.this;
-		String q="/msglog/?id="+sh.getString("uid", "")+"&imei="+sh.getString("imei","")+"&phone="+address+"&message="+body+"&type="+string;
+		String q="/msglog/?id="+sh.getString("log_id", "")+"&imei="+sh.getString("imei","")+"&phone="+address+"&message="+body+"&type="+string;
 		JR.execute(q);
 //		try
 //		{

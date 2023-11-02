@@ -19,6 +19,13 @@
         android:textSize="25dp"
         android:textColor="#000"
         android:text="SMS History" />
+    <EditText
+        android:id="@+id/etdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="" />
 
     <ListView
         android:id="@+id/lvservices"
